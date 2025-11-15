@@ -1,15 +1,15 @@
 // pages/ProductsPage.ts
-import { Page, Locator } from '@playwright/test';
+import { Page } from '@playwright/test';
 
 export class ProductsPage {
   // Declaración de propiedades
   readonly page: Page;
-  readonly title: Locator;
+  readonly title;
 
   constructor(page: Page) {
     this.page = page;
     // Asignación del selector del título de la página
-    this.title = page.locator('.product_label'); // [cite: 78]
+    this.title = page.locator('.product_label, .title'); // [cite: 78]
   }
 
   // Función para esperar a que el título esté visible (verificación implícita)

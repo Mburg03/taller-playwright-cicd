@@ -18,7 +18,7 @@ export class LoginPage {
 
   // Función para navegar a la URL
   async goto() {
-    await this.page.goto('https://www.saucedemo.com/v1/index.html'); // [cite: 68]
+    await this.page.goto('https://www.saucedemo.com/'); // [cite: 68]
   }
 
   // Función para realizar el login
