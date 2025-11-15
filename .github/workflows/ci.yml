@@ -1,0 +1,28 @@
+# .github/workflows/ci.yml
+[cite_start]name: Playwright Tests # Nombre del workflow [cite: 150]
+on:
+  push:
+    [cite_start]branches: ["main"] # Se activa al hacer push a 'main' [cite: 152, 153]
+  pull_request:
+    [cite_start]branches: ["main"] # Se activa al crear un PR a 'main' [cite: 154, 155]
+
+jobs:
+  [cite_start]test: # Definición del job de pruebas [cite: 156, 157]
+    [cite_start]runs-on: ubuntu-latest # Ejecutar en el runner de Ubuntu [cite: 158]
+    steps:
+      - name: Checkout repository # Paso 1: Clonar el código
+        [cite_start]uses: actions/checkout@v4 # [cite: 160, 161]
+
+      - name: Setup Node.js # Paso 2: Configurar el ambiente de Node.js
+        uses: actions/setup-node@v4
+        with:
+          [cite_start]node-version: 18 # Usar Node.js versión 18 [cite: 162, 164]
+
+      - name: Install dependencies # Paso 3: Instalar dependencias (Playwright)
+        [cite_start]run: npm install # [cite: 165, 166]
+
+      - name: Install Playwright Browsers # Paso 4: Instalar los navegadores de Playwright
+        [cite_start]run: npx playwright install --with-deps # [cite: 167, 168]
+
+      - name: Run tests # Paso 5: Ejecutar las pruebas
+        [cite_start]run: npx playwright test --reporter=line # [cite: 169, 170]
