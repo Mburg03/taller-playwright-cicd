@@ -1,22 +1,21 @@
-// tests/login.spec.ts
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage'; // Importar la clase LoginPage [cite: 93]
-import { ProductsPage } from '../pages/ProductsPage'; // Importar la clase ProductsPage [cite: 94]
+import { LoginPage } from '../pages/LoginPage.js'; // Importación corregida con .js
+import { ProductsPage } from '../pages/ProductsPage.js'; // Importación corregida con .js
 
-test('Login exitoso en SauceDemo con POM', async ({ page }) => { // [cite: 95]
-  // Inicializar las Page Classes [cite: 96, 97]
+test('Login exitoso en SauceDemo con POM', async ({ page }) => {
+  // Inicializar las Page Classes
   const loginPage = new LoginPage(page);
   const productsPage = new ProductsPage(page);
 
   // 1. Navegar a la página de login
-  await loginPage.goto(); // [cite: 99]
+  await loginPage.goto();
 
-  // 2. Realizar el login con credenciales válidas
-  await loginPage.login('standard_user', 'secret_sauce'); // [cite: 100]
+  // 2. Realizar el login con credenciales válidas (standard_user, secret_sauce)
+  await loginPage.login('standard_user', 'secret_sauce');
 
-  // 3. Verificar que estamos en la página de productos
-  await productsPage.verifyIsOnProductsPage(); // [cite: 104]
+  // 3. Verificar que estamos en la página de productos (esperando el selector)
+  await productsPage.verifyIsOnProductsPage();
 
-  // 4. Verificación de texto explícita
-  await expect(productsPage.title).toHaveText('Products'); // [cite: 107]
+  // 4. Aserción final: verificar que el título de la página es "Products"
+  await expect(productsPage.title).toHaveText('Products');
 });
